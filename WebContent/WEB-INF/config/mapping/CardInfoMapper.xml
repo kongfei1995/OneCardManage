@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cardsys.dao.CardInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cardsys.model.CardInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cardno" property="cardno" jdbcType="VARCHAR" />
+    <result column="oldcardno" property="oldcardno" jdbcType="VARCHAR" />
+    <result column="cardname" property="cardname" jdbcType="VARCHAR" />
+    <result column="cardpwd" property="cardpwd" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="carprice" property="carprice" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="invalidmsg" property="invalidmsg" jdbcType="VARCHAR" />
+    <result column="invalidtime" property="invalidtime" jdbcType="TIMESTAMP" />
+    <result column="allocatetime" property="allocatetime" jdbcType="TIMESTAMP" />
+    <result column="allocatemsg" property="allocatemsg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cardno, oldcardno, cardname, cardpwd, userid, username, carprice, remark, state, 
+    addtime, invalidmsg, invalidtime, allocatetime, allocatemsg
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from card_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from card_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cardsys.model.CardInfo" >
+    insert into card_info (id, cardno, oldcardno, 
+      cardname, cardpwd, userid, 
+      username, carprice, remark, 
+      state, addtime, invalidmsg, 
+      invalidtime, allocatetime, allocatemsg
+      )
+    values (#{id,jdbcType=INTEGER}, #{cardno,jdbcType=VARCHAR}, #{oldcardno,jdbcType=VARCHAR}, 
+      #{cardname,jdbcType=VARCHAR}, #{cardpwd,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, #{carprice,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, #{invalidmsg,jdbcType=VARCHAR}, 
+      #{invalidtime,jdbcType=TIMESTAMP}, #{allocatetime,jdbcType=TIMESTAMP}, #{allocatemsg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cardsys.model.CardInfo" >
+    insert into card_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cardno != null" >
+        cardno,
+      </if>
+      <if test="oldcardno != null" >
+        oldcardno,
+      </if>
+      <if test="cardname != null" >
+        cardname,
+      </if>
+      <if test="cardpwd != null" >
+        cardpwd,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="carprice != null" >
+        carprice,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="invalidmsg != null" >
+        invalidmsg,
+      </if>
+      <if test="invalidtime != null" >
+        invalidtime,
+      </if>
+      <if test="allocatetime != null" >
+        allocatetime,
+      </if>
+      <if test="allocatemsg != null" >
+        allocatemsg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cardno != null" >
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="oldcardno != null" >
+        #{oldcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardname != null" >
+        #{cardname,jdbcType=VARCHAR},
+      </if>
+      <if test="cardpwd != null" >
+        #{cardpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="carprice != null" >
+        #{carprice,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidmsg != null" >
+        #{invalidmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidtime != null" >
+        #{invalidtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allocatetime != null" >
+        #{allocatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allocatemsg != null" >
+        #{allocatemsg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cardsys.model.CardInfo" >
+    update card_info
+    <set >
+      <if test="cardno != null" >
+        cardno = #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="oldcardno != null" >
+        oldcardno = #{oldcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardname != null" >
+        cardname = #{cardname,jdbcType=VARCHAR},
+      </if>
+      <if test="cardpwd != null" >
+        cardpwd = #{cardpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="carprice != null" >
+        carprice = #{carprice,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidmsg != null" >
+        invalidmsg = #{invalidmsg,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidtime != null" >
+        invalidtime = #{invalidtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allocatetime != null" >
+        allocatetime = #{allocatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allocatemsg != null" >
+        allocatemsg = #{allocatemsg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cardsys.model.CardInfo" >
+    update card_info
+    set cardno = #{cardno,jdbcType=VARCHAR},
+      oldcardno = #{oldcardno,jdbcType=VARCHAR},
+      cardname = #{cardname,jdbcType=VARCHAR},
+      cardpwd = #{cardpwd,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      carprice = #{carprice,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      invalidmsg = #{invalidmsg,jdbcType=VARCHAR},
+      invalidtime = #{invalidtime,jdbcType=TIMESTAMP},
+      allocatetime = #{allocatetime,jdbcType=TIMESTAMP},
+      allocatemsg = #{allocatemsg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByCardno" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from card_info
+    where cardno = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByUserid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from card_info
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+		select  count(*) from card_info
+		<where>
+			<if test="cardno != null" >
+	        	cardno like ${cardno}
+	      	</if>
+			<if test="name != null" >
+	        	and username like ${name}
+	      	</if>
+			<if test="state != null" >
+	        	and state = #{state}
+	      	</if>
+			<if test="startDate != null">  
+			    and addtime &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">  
+			    and addtime &lt;= #{endDate}
+			</if>
+			<if test="invalidStartDate != null">  
+			    and invalidtime &gt;= #{invalidStartDate}
+			</if>
+			<if test="invalidEndDate != null">  
+			    and invalidtime &lt;= #{invalidEndDate}
+			</if>
+			<if test="allocateStartDate != null">  
+			    and allocatetime &gt;= #{allocateStartDate}
+			</if>
+			<if test="allocateEndDate != null">  
+			    and allocatetime &lt;= #{allocateEndDate}
+			</if>
+		</where>
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.Map" >
+		select  <include refid="Base_Column_List" /> from card_info
+		<where>
+			<if test="cardno != null" >
+	        	cardno like ${cardno}
+	      	</if>
+			<if test="name != null" >
+	        	and username like ${name}
+	      	</if>
+			<if test="state != null" >
+	        	and state = #{state}
+	      	</if>
+			<if test="startDate != null">  
+			    and addtime &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">  
+			    and addtime &lt;= #{endDate}
+			</if>
+			<if test="invalidStartDate != null">  
+			    and invalidtime &gt;= #{invalidStartDate}
+			</if>
+			<if test="invalidEndDate != null">  
+			    and invalidtime &lt;= #{invalidEndDate}
+			</if>
+			<if test="allocateStartDate != null">  
+			    and allocatetime &gt;= #{allocateStartDate}
+			</if>
+			<if test="allocateEndDate != null">  
+			    and allocatetime &lt;= #{allocateEndDate}
+			</if>
+		</where>
+		 <if test="startPos != null">  
+	    	limit  #{startPos},  #{pageSize}
+	    </if>
+   </select>
+</mapper>

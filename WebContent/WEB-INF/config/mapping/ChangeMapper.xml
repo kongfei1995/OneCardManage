@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cardsys.dao.ChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.cardsys.model.Change" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="oldcardno" property="oldcardno" jdbcType="VARCHAR" />
+    <result column="newcardno" property="newcardno" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="operatedate" property="operatedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, oldcardno, newcardno, userid, username, operatedate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from `change`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `change`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cardsys.model.Change" >
+    insert into `change` (id, oldcardno, newcardno, 
+      userid, username, operatedate
+      )
+    values (#{id,jdbcType=INTEGER}, #{oldcardno,jdbcType=VARCHAR}, #{newcardno,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{operatedate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cardsys.model.Change" >
+    insert into `change`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="oldcardno != null" >
+        oldcardno,
+      </if>
+      <if test="newcardno != null" >
+        newcardno,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="operatedate != null" >
+        operatedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="oldcardno != null" >
+        #{oldcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="newcardno != null" >
+        #{newcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null" >
+        #{operatedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cardsys.model.Change" >
+    update `change`
+    <set >
+      <if test="oldcardno != null" >
+        oldcardno = #{oldcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="newcardno != null" >
+        newcardno = #{newcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="operatedate != null" >
+        operatedate = #{operatedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cardsys.model.Change" >
+    update `change`
+    set oldcardno = #{oldcardno,jdbcType=VARCHAR},
+      newcardno = #{newcardno,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      username = #{username,jdbcType=VARCHAR},
+      operatedate = #{operatedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectAllCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+		select  count(*) from `change`
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.Map" >
+		select  <include refid="Base_Column_List" /> from `change` order by operatedate desc
+		 <if test="startPos != null">  
+	    	limit  #{startPos},  #{pageSize}
+	    </if>
+   </select>
+</mapper>

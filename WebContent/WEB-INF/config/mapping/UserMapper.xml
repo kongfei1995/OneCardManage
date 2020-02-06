@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cardsys.dao.UserMapper" >
+ <resultMap id="BaseResultMap" type="com.cardsys.model.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="grade" jdbcType="VARCHAR" property="grade" />
+    <result column="college" jdbcType="VARCHAR" property="college" />
+    <result column="addtime" jdbcType="TIMESTAMP" property="addtime" />
+    <result column="reward" jdbcType="VARCHAR" property="reward" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="schooltime" jdbcType="VARCHAR" property="schooltime" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, account, password, sex, grade, college, addtime, reward, nation, birthday, 
+    schooltime, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cardsys.model.User">
+    insert into user (id, name, account, 
+      password, sex, grade, 
+      college, addtime, reward, 
+      nation, birthday, schooltime, 
+      type)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{grade,jdbcType=VARCHAR}, 
+      #{college,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, #{reward,jdbcType=VARCHAR}, 
+      #{nation,jdbcType=VARCHAR}, #{birthday,jdbcType=VARCHAR}, #{schooltime,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cardsys.model.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="college != null">
+        college,
+      </if>
+      <if test="addtime != null">
+        addtime,
+      </if>
+      <if test="reward != null">
+        reward,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="schooltime != null">
+        schooltime,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null">
+        #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reward != null">
+        #{reward,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="schooltime != null">
+        #{schooltime,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cardsys.model.User">
+    update user
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="college != null">
+        college = #{college,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reward != null">
+        reward = #{reward,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="schooltime != null">
+        schooltime = #{schooltime,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cardsys.model.User">
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=VARCHAR},
+      college = #{college,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      reward = #{reward,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      schooltime = #{schooltime,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByAccount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where account = #{account,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAllCount" resultType="java.lang.Integer" parameterType="java.util.Map" >
+		select  count(*) from user where type = #{type}
+		<if test="name != null" >
+        	and name like ${name}
+      	</if>
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.Map" >
+		select  user.* from user where type = #{type}
+		<if test="name != null" >
+        	and name like ${name}
+      	</if>
+		 <if test="startPos != null">  
+	    	limit  #{startPos},  #{pageSize}
+	    </if>
+   </select>
+</mapper>
